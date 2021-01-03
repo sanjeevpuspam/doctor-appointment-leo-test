@@ -90,7 +90,10 @@ function bookAppointment($atts) {
     $Content .="</select></div>";
     return $Content;
 }
-if(is_user_logged_in()) {
-	add_shortcode('bookappointment', 'bookAppointment');
+add_action('init', 'ajax_auth_init');
+function ajax_auth_init()
+{
+    if(!is_user_logged_in()) return;
+    add_shortcode('bookappointment', 'bookAppointment');
 }
 
